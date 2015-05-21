@@ -11,4 +11,10 @@ router.get('/', function(req, res) {
   });
 });
 
+router.get('/:id', function(req, res) {
+  Classroom.findOne({_id: req.params.id}, function(err, classroom) {
+    res.render('classrooms/show', {classroom: classroom});
+  });
+});
+
 module.exports = router;
