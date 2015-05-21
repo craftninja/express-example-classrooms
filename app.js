@@ -4,11 +4,23 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+
+var classroom = require('./app/models/classroom');
 
 var routes = require('./routes/index');
 var classroomRoutes = require('./routes/classrooms');
 
 var app = express();
+
+var mongoConnection = function() {
+  var options = {server: {socketOptions: {keepAlive: 1}}};
+  mongoose.connect('mongodb://localhost/classroom', options);
+}
+mongoConnection();
+
+mongoose.connection.on('error', console.log);
+mongoose.connection.on('disconnected', mongoConnection);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
