@@ -11,6 +11,22 @@ router.get('/', function(req, res) {
   });
 });
 
+router.get('/new', function(req, res) {
+  res.render('classrooms/new');
+});
+
+router.post('/', function(req, res) {
+  classroom = new Classroom({
+    name: req.body['classroom[name]'],
+    numberOfSeats: req.body['classroom[numberOfSeats]'],
+    hasKeg: req.body['classroom[hasKeg]']
+  })
+  classroom.save(function (err, classroom) {
+    if (err) return console.error(err);
+    res.redirect('classrooms/' + classroom.id);
+  });
+});
+
 router.get('/:id', function(req, res) {
   Classroom.findOne({_id: req.params.id}, function(err, classroom) {
     res.render('classrooms/show', {classroom: classroom});

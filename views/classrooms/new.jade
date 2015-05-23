@@ -1,0 +1,13 @@
+h1  New Classroom
+form(action='/classrooms' method='post')
+  p
+    label Name
+    input(type='text' name='classroom[name]')
+  p
+    label Number of Seats
+    input(type='text' name='classroom[numberOfSeats]')
+  p
+    label Keg in classroom
+      input(type='checkbox' name='classroom[hasKeg]')
+  p
+    input(type='submit' name='commit' value='Add Classroom')

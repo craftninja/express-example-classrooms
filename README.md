@@ -2,6 +2,12 @@
 
 
 
+### Running the server:
+
+```
+$ DEBUG=classroom:* npm start
+```
+
 ### Adding things to the database:
 
 ```
@@ -15,5 +21,4 @@ classroom.classrooms
 > db.classrooms.insert({name: "Work Lab", numberOfSeats: 28, hasKeg: false})
 WriteResult({ "nInserted" : 1 })
 >
-
 ```
