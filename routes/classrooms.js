@@ -51,4 +51,11 @@ router.post('/:id', function(req, res) {
   });
 });
 
+router.get('/:id/delete', function(req, res) {
+  Classroom.findOne({_id: req.params.id}, function(err, classroom) {
+    classroom.remove();
+    res.redirect('/classrooms/');
+  });
+});
+
 module.exports = router;
