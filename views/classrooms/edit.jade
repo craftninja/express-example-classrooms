@@ -1,0 +1,17 @@
+h1  Update Classroom #{classroom.name}
+form(action='/classrooms/#{classroom.id}' method='post')
+  p
+    label Name
+    input(type='text' name='classroom[name]' value='#{classroom.name}')
+  p
+    label Number of Seats
+    input(type='text' name='classroom[numberOfSeats]' value='#{classroom.numberOfSeats}')
+  p
+    label Keg in classroom:
+      if classroom.hasKeg
+        input(type='checkbox' name='classroom[hasKeg]' checked='#{classroom.hasKeg}')
+      else
+        input(type='checkbox' name='classroom[hasKeg]')
+      end
+  p
+    input(type='submit' name='commit' value='Update Classroom')

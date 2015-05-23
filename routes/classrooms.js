@@ -33,4 +33,22 @@ router.get('/:id', function(req, res) {
   });
 });
 
+router.get('/:id/edit', function(req, res) {
+  Classroom.findOne({_id: req.params.id}, function(err, classroom) {
+    res.render('classrooms/edit', {classroom: classroom});
+  });
+});
+
+router.post('/:id', function(req, res) {
+  Classroom.findOne({_id: req.params.id}, function(err, classroom) {
+    classroom.name = req.body['classroom[name]'];
+    classroom.numberOfSeats = req.body['classroom[numberOfSeats]'];
+    classroom.hasKeg = req.body['classroom[hasKeg]'];
+    classroom.save(function (err, classroom) {
+      if (err) return console.error(err);
+      res.redirect('/classrooms/' + classroom.id);
+    })
+  });
+});
+
 module.exports = router;
